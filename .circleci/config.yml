@@ -1,0 +1,49 @@
+version: 2.0
+
+jobs:
+  "ruby-2.2":
+    docker:
+      - image: circleci/ruby:2.2-node
+      - image: circleci/postgres:9.4.12-alpine
+    working_directory: ~/circleci-demo-workflows
+    steps:
+      - checkout
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: Run tests
+          command: rake
+
+  "ruby-2.3":
+    docker:
+      - image: circleci/ruby:2.3-node
+      - image: circleci/postgres:9.4.12-alpine
+    working_directory: ~/circleci-demo-workflows
+    steps:
+      - checkout
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: Run tests
+          command: rake
+
+  "ruby-2.4":
+    docker:
+      - image: circleci/ruby:2.4-node
+      - image: circleci/postgres:9.4.12-alpine
+    working_directory: ~/circleci-demo-workflows
+    steps:
+      - checkout
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run:
+          name: Run tests
+          command: rake
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - "ruby-2.2"
+      - "ruby-2.3"
+      - "ruby-2.4"
