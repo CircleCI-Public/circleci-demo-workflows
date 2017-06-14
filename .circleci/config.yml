@@ -37,24 +37,6 @@ jobs:
           paths:
             - ~/circleci-demo-workflows/vendor/bundle
 
-  setup_database:
-    docker:
-      - image: circleci/ruby:2.4-node
-      - image: circleci/postgres:9.4.12-alpine
-    working_directory: ~/circleci-demo-workflows
-    steps:
-      - run:
-          name: save SHA to a file
-          command: echo $CIRCLE_SHA1 > .circle-sha
-      - restore_cache:
-          keys:
-            - v1-repo-{{ checksum ".circle-sha" }}
-      - restore_cache:
-          keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
-      - run: bundle --path vendor/bundle
-      - run: bundle exec rake db:create db:schema:load
-
   rake_test:
     docker:
       - image: circleci/ruby:2.4-node
@@ -71,6 +53,7 @@ jobs:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
       - run: bundle --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
       - run:
           name: Run tests
           command: bundle exec rake
@@ -134,20 +117,14 @@ workflows:
       - bundle_dependencies:
           requires:
             - checkout_code
-      - setup_database:
-          requires:
-            - checkout_code
-            - bundle_dependencies
       - rake_test:
           requires:
             - checkout_code
             - bundle_dependencies
-            - setup_database
       - precompile_assets:
           requires:
             - checkout_code
             - bundle_dependencies
-            - setup_database
       - deploy:
           requires:
             - checkout_code
