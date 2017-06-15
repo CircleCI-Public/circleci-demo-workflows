@@ -114,19 +114,14 @@ workflows:
   build-and-deploy:
     jobs:
       - checkout_code
-      - bundle_dependencies:
-          requires:
-            - checkout_code
+      - bundle_dependencies
       - rake_test:
           requires:
-            - checkout_code
             - bundle_dependencies
       - precompile_assets:
           requires:
-            - checkout_code
             - bundle_dependencies
       - deploy:
           requires:
-            - checkout_code
             - rake_test
             - precompile_assets
