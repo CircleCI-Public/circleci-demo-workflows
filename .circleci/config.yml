@@ -86,6 +86,8 @@ jobs:
     machine:
         enabled: true
     working_directory: ~/circleci-demo-workflows
+    environment:
+      - HEROKU_APP: still-shelf-38337
     steps:
       - run:
           name: save SHA to a file
