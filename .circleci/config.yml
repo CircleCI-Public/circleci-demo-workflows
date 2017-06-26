@@ -8,6 +8,11 @@ jobs:
     working_directory: ~/circleci-demo-workflows
     steps:
       - checkout
+      - run: |
+        echo $PWD
+        ls -aslh .
+        ls -aslh ~
+        ls -aslh ~/circleci-demo-workflows
       - persist_to_workspace:
           root: .
           paths:
