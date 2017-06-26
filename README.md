@@ -1,4 +1,4 @@
-# CircleCI Workflows Demos: Fan-in / Fan-out
+# CircleCI Workflows Demos: Workspace Forwarding
 
 ...
 
