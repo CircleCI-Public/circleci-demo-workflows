@@ -106,7 +106,7 @@ jobs:
           command: bash .circleci/setup-heroku.sh
       - run:
           command: |
-            git push heroku master
+            git push heroku fan-in-fan-out:master
             heroku run rake db:migrate
             sleep 5 # sleep for 5 seconds to wait for dynos
             heroku restart
