@@ -21,7 +21,7 @@ jobs:
     working_directory: ~/circleci-demo-workflows
     steps:
       - attach_workspace:
-          at: .
+          at: /home/circleci-demo-workflows
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
