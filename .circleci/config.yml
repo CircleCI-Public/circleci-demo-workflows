@@ -23,7 +23,7 @@ jobs:
       - run: ls -aslh /home/circleci
       - run: ls -aslh /home/circleci/circleci-demo-workflows
       - attach_workspace:
-          at: .
+          at: /home/circleci/circleci-demo-workflows
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
