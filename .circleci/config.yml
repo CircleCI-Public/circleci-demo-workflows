@@ -21,6 +21,7 @@ jobs:
     working_directory: ~/circleci-demo-workflows
     steps:
       - run: ls -aslh /home/circleci
+      - run: ls -aslh /home/circleci/circleci-demo-workflows
       - attach_workspace:
           at: .
       - restore_cache:
