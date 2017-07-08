@@ -8,9 +8,8 @@ jobs:
     working_directory: ~/circleci-demo-workflows
     steps:
       - checkout
-      - run: ls -aslh ~/circleci-demo-workflows
       - persist_to_workspace:
-          root: /home
+          root: /home/circleci
           paths:
             - circleci-demo-workflows
 
