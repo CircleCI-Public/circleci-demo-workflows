@@ -9,9 +9,7 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-          root: /home/circleci
-          paths:
-            - circleci-demo-workflows
+          paths: /home/circleci/circleci-demo-workflows
 
   bundle_dependencies:
     docker:
@@ -32,9 +30,7 @@ jobs:
           paths:
             - ~/circleci-demo-workflows/vendor/bundle
       - persist_to_workspace:
-          root: .
-          paths:
-            - vendor/bundle
+          paths: /home/circleci/circleci-demo-workflows/vendor/bundle
 
   rake_test:
     docker:
@@ -67,9 +63,7 @@ jobs:
           name: Precompile assets
           command: bundle exec rake assets:precompile
       - persist_to_workspace:
-          root: .
-          paths:
-            - public/assets
+          paths: /home/circleci/circleci-demo-workflows/public/assets
 
   deploy:
     machine:
