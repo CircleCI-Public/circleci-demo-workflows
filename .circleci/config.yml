@@ -20,7 +20,7 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
     steps:
-      - run: ls -aslh .
+      - run: ls -aslh /home
       - attach_workspace:
           at: .
       - restore_cache:
