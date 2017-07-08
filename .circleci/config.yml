@@ -20,8 +20,9 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
     steps:
+      - run: ls -aslh .
       - attach_workspace:
-          at: /home/circleci-demo-workflows
+          at: .
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
