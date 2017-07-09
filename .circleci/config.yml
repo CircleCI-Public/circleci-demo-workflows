@@ -18,10 +18,8 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: /home/circleci/circleci-demo-workflows
     steps:
-      - run: ls -aslh /home/circleci/circleci-demo-workflows
       - attach_workspace:
           at: /home/circleci/circleci-demo-workflows
-      - run: ls -aslh /home/circleci/circleci-demo-workflows
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
@@ -41,9 +39,9 @@ jobs:
     working_directory: /home/circleci/circleci-demo-workflows
     steps:
       - attach_workspace:
-          at: ~/circleci-demo-workflows
+          at: /home/circleci/circleci-demo-workflows
       - attach_workspace:
-          at: ~/circleci-demo-workflows/vendor/bundle
+          at: vendor/bundle
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run:
@@ -57,9 +55,9 @@ jobs:
     working_directory: /home/circleci/circleci-demo-workflows
     steps:
       - attach_workspace:
-          at: ~/circleci-demo-workflows
+          at: /home/circleci/circleci-demo-workflows
       - attach_workspace:
-          at: ~/circleci-demo-workflows/vendor/bundle
+          at: vendor/bundle
       - run: bundle --path vendor/bundle
       - run:
           name: Precompile assets
@@ -76,11 +74,11 @@ jobs:
       - HEROKU_APP: still-shelf-38337
     steps:
       - attach_workspace:
-          at: ~/circleci-demo-workflows
+          at: /home/circleci/circleci-demo-workflows
       - attach_workspace:
-          at: ~/circleci-demo-workflows/vendor/bundle
+          at: vendor/bundle
       - attach_workspace:
-          at: ~/circleci-demo-workflows/public/assets
+          at: public/assets
       - run:
           name: Setup Heroku
           command: bash .circleci/setup-heroku.sh
