@@ -71,7 +71,7 @@ jobs:
         enabled: true
     working_directory: /home/circleci/circleci-demo-workflows
     environment:
-      - HEROKU_APP: still-shelf-38337
+      - HEROKU_APP: safe-wildwood-45845
     steps:
       - attach_workspace:
           at: /home/circleci/circleci-demo-workflows
