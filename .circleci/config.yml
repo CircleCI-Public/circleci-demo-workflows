@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
-    working_directory: ~/circleci-demo-workflows
+    working_directory: /home/circleci/circleci-demo-workflows
     steps:
       - checkout
       - persist_to_workspace:
@@ -16,7 +16,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
-    working_directory: ~/circleci-demo-workflows
+    working_directory: /home/circleci/circleci-demo-workflows
     steps:
       - run: ls -aslh /home/circleci/circleci-demo-workflows
       - attach_workspace:
@@ -38,7 +38,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
-    working_directory: ~/circleci-demo-workflows
+    working_directory: /home/circleci/circleci-demo-workflows
     steps:
       - attach_workspace:
           at: ~/circleci-demo-workflows
@@ -54,7 +54,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
-    working_directory: ~/circleci-demo-workflows
+    working_directory: /home/circleci/circleci-demo-workflows
     steps:
       - attach_workspace:
           at: ~/circleci-demo-workflows
@@ -71,7 +71,7 @@ jobs:
   deploy:
     machine:
         enabled: true
-    working_directory: ~/circleci-demo-workflows
+    working_directory: /home/circleci/circleci-demo-workflows
     environment:
       - HEROKU_APP: still-shelf-38337
     steps:
