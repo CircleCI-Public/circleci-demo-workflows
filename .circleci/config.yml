@@ -5,11 +5,11 @@ jobs:
     docker:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
-    working_directory: /home/circleci/circleci-demo-workflows
+    working_directory: ~/circleci-demo-workflows
     steps:
       - checkout
       - attach_workspace:
-          at: /home/circleci/circleci-demo-workflows
+          at: ~/circleci-demo-workflows
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
@@ -26,11 +26,11 @@ jobs:
     docker:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
-    working_directory: /home/circleci/circleci-demo-workflows
+    working_directory: ~/circleci-demo-workflows
     steps:
       - checkout
       - attach_workspace:
-          at: /home/circleci/circleci-demo-workflows
+          at: ~/circleci-demo-workflows
       - run: bundle --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run:
@@ -41,11 +41,11 @@ jobs:
     docker:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
-    working_directory: /home/circleci/circleci-demo-workflows
+    working_directory: ~/circleci-demo-workflows
     steps:
       - checkout
       - attach_workspace:
-          at: /home/circleci/circleci-demo-workflows
+          at: ~/circleci-demo-workflows
       - run: bundle --path vendor/bundle
       - run:
           name: Precompile assets
@@ -57,13 +57,13 @@ jobs:
   deploy:
     machine:
         enabled: true
-    working_directory: /home/circleci/circleci-demo-workflows
+    working_directory: ~/circleci-demo-workflows
     environment:
       - HEROKU_APP: safe-wildwood-45845
     steps:
       - checkout
       - attach_workspace:
-          at: /home/circleci/circleci-demo-workflows
+          at: ~/circleci-demo-workflows
       - run:
           name: Setup Heroku
           command: bash .circleci/setup-heroku.sh
