@@ -18,33 +18,14 @@ jobs:
           name: Run tests
           command: rake
 
-  deploy:
-    machine:
-        enabled: true
-    working_directory: ~/circleci-demo-workflows
-    environment:
-      HEROKU_APP: "sleepy-refuge-55486"
-    steps:
-      - checkout
-      - run:
-          name: Setup Heroku
-          command: bash .circleci/setup-heroku.sh
-
-      - run:
-          command: |
-            git push heroku sequential-branch-filter:master
-            heroku run rake db:migrate
-            sleep 5 # sleep for 5 seconds to wait for dynos
-            heroku restart
-
 workflows:
   version: 2
-  build-and-deploy:
+  scheduled-workflow:
+    triggers:
+      type: schedule
+      cron: 0 0 1 * *
+      branches:
+        only:
+          - try-schedule-workflow
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: sequential-branch-filter
