@@ -22,10 +22,11 @@ workflows:
   version: 2
   scheduled-workflow:
     triggers:
-      type: schedule
-      cron: 0 0 1 * *
-      branches:
-        only:
-          - try-schedule-workflow
+      schedule:
+        cron: 0 0 1 * *
+        filters:
+          branches:
+            only: try-schedule-workflow
+
     jobs:
       - build
