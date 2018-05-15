@@ -87,9 +87,6 @@ jobs:
           keys:
             - v1-assets-{{ .Environment.CIRCLE_SHA1 }}
       - run:
-          name: Setup Heroku
-          command: bash .circleci/setup-heroku.sh
-      - run:
           command: |
             git push heroku fan-in-fan-out:master
             heroku run rake db:migrate
