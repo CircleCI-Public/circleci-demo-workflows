@@ -6,6 +6,7 @@ jobs:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
+    resource_class: small
     steps:
       - checkout
       - save_cache:
@@ -18,6 +19,7 @@ jobs:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
+    resource_class: xlarge
     steps:
       - restore_cache:
           keys:
@@ -36,6 +38,7 @@ jobs:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
+    resource_class: xlarge
     steps:
       - restore_cache:
           keys:
@@ -54,6 +57,7 @@ jobs:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
+    resource_class: xlarge
     steps:
       - restore_cache:
           keys:
