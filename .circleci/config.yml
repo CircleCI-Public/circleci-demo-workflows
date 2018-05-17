@@ -27,7 +27,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle
+      - run: bundle install --path vendor/bundle --jobs 8
       - save_cache:
           key: v1-bundle-{{ checksum "Gemfile.lock" }}
           paths:
