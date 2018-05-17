@@ -19,7 +19,7 @@ jobs:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
-    resource_class: xlarge
+    resource_class: small
     steps:
       - restore_cache:
           keys:
@@ -27,7 +27,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-bundle-{{ checksum "Gemfile.lock" }}
-      - run: bundle install --path vendor/bundle --jobs 8
+      - run: bundle install --path vendor/bundle
       - save_cache:
           key: v1-bundle-{{ checksum "Gemfile.lock" }}
           paths:
@@ -38,7 +38,7 @@ jobs:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
-    resource_class: xlarge
+    resource_class: small
     steps:
       - restore_cache:
           keys:
@@ -57,7 +57,7 @@ jobs:
       - image: circleci/ruby:2.4-node
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/circleci-demo-workflows
-    resource_class: xlarge
+    resource_class: small
     steps:
       - restore_cache:
           keys:
