@@ -110,3 +110,4 @@ workflows:
           requires:
             - rake_test
             - precompile_assets
+            
