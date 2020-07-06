@@ -64,16 +64,13 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - checkout_code
-      - bundle_dependencies:
-          requires:
-            - checkout_code
+      - checkout_code_and_bundle_dependencies:
       - rake_test:
           requires:
-            - bundle_dependencies
+            - checkout_code_and_bundle_dependencies
       - precompile_assets:
           requires:
-            - bundle_dependencies
+            - checkout_code_and_bundle_dependencies
       - deploy:
           requires:
             - rake_test
