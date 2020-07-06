@@ -64,7 +64,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - checkout_and_bundle_dependencies:
+      - checkout_and_bundle_dependencies
       - rake_test:
           requires:
             - checkout_and_bundle_dependencies
