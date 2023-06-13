@@ -6,6 +6,7 @@ commands:
         steps:
           - checkout
           - run: bundle config set --local path vendor/bundle
+          - run: bundle install
           - run: bundle exec rake db:create db:schema:load
           - run: rake
 
