@@ -15,37 +15,37 @@ executors:
             tag:
                 type: string
         docker:
-            - image: circleci/ruby:<< parameters.tag >>
-            - image: circleci/postgres:9.4.12-alpine
+            - image: cimg/ruby:<< parameters.tag >>
+            - image: cimg/postgres:15.3
 
 workflows:
   ruby-test:
     jobs: # run test suite concurrently on different versions of Ruby
-      - ruby-2-2
-      - ruby-2-3
-      - ruby-2-4
+      - ruby-3-2
+      - ruby-3-1
+      - ruby-3-0
 
 jobs:
-  ruby-2-2:
+  ruby-3-2:
     executor: 
         name: docker-ruby
-        tag: "2.2-node"
+        tag: "3.2-node"
     working_directory: ~/circleci-demo-workflows
     steps:
       - run-tests
 
-  ruby-2-3:
+  ruby-3-1:
     executor: 
         name: docker-ruby
-        tag: "2.3-node"
+        tag: "3.1-node"
     working_directory: ~/circleci-demo-workflows
     steps:
       - run-tests
 
-  ruby-2-4:
+  ruby-3-0:
     executor: 
         name: docker-ruby
-        tag: "2.4-node"
+        tag: "3.0-node"
     working_directory: ~/circleci-demo-workflows
     steps:
       - run-tests
