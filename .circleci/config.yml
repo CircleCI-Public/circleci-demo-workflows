@@ -5,7 +5,7 @@ commands:
         description: Install dependencies, load db and run tests
         steps:
           - checkout
-          - run: bundle install --path vendor/bundle
+          - run: bundle config set --local path vendor/bundle
           - run: bundle exec rake db:create db:schema:load
           - run: rake
 
